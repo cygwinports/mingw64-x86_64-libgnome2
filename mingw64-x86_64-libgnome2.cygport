@@ -1,0 +1,20 @@
+CROSS_HOST="x86_64-w64-mingw32"
+ORIG_PN="libgnome"
+inherit cross gnome2
+
+NAME="mingw64-x86_64-libgnome2"
+VERSION=2.32.1
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Core GNOME library for Win64 toolchain"
+DESCRIPTION="This is the non-gui part of the GNOME library."
+
+PATCH_URI="http://pkgs.fedoraproject.org/cgit/libgnome.git/plain/0001-Don-t-use-G_DISABLE_DEPRECATED.patch"
+
+PKG_NAMES="${NAME} mingw64-x86_64-gconf2-desktop-schemas"
+mingw64_x86_64_libgnome2_REQUIRES="mingw64-x86_64-gconf2-desktop-schemas"
+mingw64_x86_64_libgnome2_CONTENTS="--exclude=etc ${CROSS_PREFIX#/} usr/share/doc/"
+mingw64_x86_64_gconf2_desktop_schemas_SUMMARY="GConf desktop settings schemas for Win64 toolchain"
+mingw64_x86_64_gconf2_desktop_schemas_CONTENTS="etc/ ${CROSS_PREFIX#/}/etc/"
+
+CYGCONF_ARGS="--disable-canberra"
